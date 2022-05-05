@@ -22,7 +22,7 @@ def ConnectToInstrument(m_sectionname):
     #g_list_resources = g_rm.list_resources()
 
     g_inst = g_rm.open_resource(m_sectionname)
-
+    set_timeout(5000)
     send_cmd = "*IDN?"
     m_return = QueryCommand(send_cmd)
     m_IDN    = m_return
@@ -32,7 +32,9 @@ def ConnectToInstrument(m_sectionname):
 def QueryCommand(sSend):
     send_cmd = sSend
     logSCPI.debug("[W]: %s" % send_cmd)
-    m_return = g_inst.query(send_cmd)
-    logSCPI.debug("[R]: %s" % m_return.replace('\n', '').replace('\r', ''))
-
+    m_return = g_inst.query(send_cmd).rstrip('\r').rstrip('\n')
+    logSCPI.debug("[R]: %s" % m_return)
     return m_return
+
+def set_timeout(timeout_ms):
+    g_inst.timeout = timeout_ms

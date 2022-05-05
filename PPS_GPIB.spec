@@ -41,5 +41,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon='C:\\Users\\tw000206\\OneDrive - ANRITSU CORPORATION\\Anritsu_Code\\Github\\PPS_Control\\aulhh-lyt75-001.ico',
+    icon='aulhh-lyt75-001.ico',
 )

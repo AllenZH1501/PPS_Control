@@ -8,8 +8,8 @@ import NI_VISA as m_visa
 import logging
 
 log = None;
-Version = '1.00.003'
-Built_Date = "2022/05/04"
+Version = '1.00.004'
+Built_Date = "2022/05/05"
 
 
 if __name__ == '__main__':
@@ -26,7 +26,9 @@ if __name__ == '__main__':
         bIsHelp = True
         bIsParmDone = False
     elif len(sys.argv) == 2:
-        if sys.argv[1].find("?") != -1 or sys.argv[1].find("-help") != -1  or sys.argv[1].find("-h") != -1:
+        if ((sys.argv[1].find("-v") != -1) or (sys.argv[1].find("-version") != -1)):
+            print("Version: %s Built_Date: %s" % (Version,Built_Date))
+        elif sys.argv[1].find("?") != -1 or sys.argv[1].find("-help") != -1  or sys.argv[1].find("-h") != -1:
             bIsHelp = True
             bIsParmDone = False
     else:
@@ -107,6 +109,7 @@ if __name__ == '__main__':
             csvfilename = 'power_data.csv'
             if os.path.isfile(csvfilename):
                 os.remove(csvfilename)
+
             with open(csvfilename, 'w', newline='') as csv_log:
                 writer = csv.writer(csv_log)
                 i = 0
@@ -169,4 +172,4 @@ if __name__ == '__main__':
         print("ex: PPS_GPIB.exe MEAS 5 1 YES(ON\OFF) 10000 0")
         print("ex: PPS_GPIB.exe MEAS 5 1 YES(ON\OFF) 10000 0")
         if not bIsParmDone:
-            print("PARMS_FALSE")
+            print("ARGS_FALSE")
